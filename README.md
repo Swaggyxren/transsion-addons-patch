@@ -53,7 +53,7 @@ TranSettings/
 
 ## Renaming "satya" / "kajru"
 
-The sysprops (`persist.sys.satya.*`) and preference keys (`kajru_addons_enabled`, `satya_dfs_key`, etc.) are supersatyam's identifiers. You can rename them to your own — just do a consistent find-and-replace across all smali files and the XMLs before rebuilding.
+The sysprops (`persist.sys.satya.*`) and preference keys (`kajru_addons_enabled`, `satya_dfs_key`, etc.) are satyam's identifiers. You can rename them to your own — just do a consistent find-and-replace across all smali files and the XMLs before rebuilding.
 
 ## Laya BatteryMonitor (vendor side)
 
