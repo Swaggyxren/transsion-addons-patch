@@ -719,7 +719,7 @@
 
 # virtual methods
 .method public displayPreference(Landroidx/preference/PreferenceScreen;)V
-    .registers 7
+    .registers 12
 
     invoke-super {p0, p1}, Lcom/android/settings/core/c;->displayPreference(Landroidx/preference/PreferenceScreen;)V
 
@@ -852,6 +852,69 @@
 
     iput-object v0, p0, Lcom/transsion/settings/deviceinfo/aboutphone/OsVersionController;->mCardBackground:Landroid/widget/ImageView;
 
+    const-string v5, "persist.sys.satya.banner.source"
+
+    const-string v6, "wallpaper"
+
+    invoke-static {v5, v6}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string v6, "custom"
+
+    invoke-virtual {v6, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_c6
+
+    new-instance v5, Ljava/io/File;
+
+    iget-object v6, p0, Lcom/transsion/settings/deviceinfo/aboutphone/OsVersionController;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v6}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
+
+    move-result-object v6
+
+    const-string v7, "banner.png"
+
+    invoke-direct {v5, v6, v7}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_c6
+
+    invoke-virtual {v5}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v5}, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+
+    move-result-object v5
+
+    iget-object v6, p0, Lcom/transsion/settings/deviceinfo/aboutphone/OsVersionController;->mCardBackground:Landroid/widget/ImageView;
+
+    invoke-virtual {v6, v5}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
+
+    const/high16 v7, 0x41200000    # 10.0f
+
+    const/high16 v8, 0x41200000    # 10.0f
+
+    sget-object v9, Landroid/graphics/Shader$TileMode;->CLAMP:Landroid/graphics/Shader$TileMode;
+
+    invoke-static {v7, v8, v9}, Landroid/graphics/RenderEffect;->createBlurEffect(FFLandroid/graphics/Shader$TileMode;)Landroid/graphics/RenderEffect;
+
+    move-result-object v7
+
+    invoke-virtual {v6, v7}, Landroid/widget/ImageView;->setRenderEffect(Landroid/graphics/RenderEffect;)V
+
+    sget-object v7, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
+
+    invoke-virtual {v6, v7}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
+
+    :cond_c6
     iget-object v0, p1, Lcom/android/settingslib/widget/LayoutPreference;->d:Landroid/view/View;
 
     const v3, 0x7f0b0869

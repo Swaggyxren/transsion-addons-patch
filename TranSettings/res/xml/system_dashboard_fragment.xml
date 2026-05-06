@@ -14,6 +14,15 @@
         android:order="70"
         android:fragment="com.android.settings.language.LanguageAndRegionSettings"
         settings:controller="com.android.settings.language.LanguageAndRegionPreferenceController"/>
+    <PreferenceCategory
+        android:title="Addons"
+        android:order="80">
+        <Preference
+            android:title="Addons"
+            android:key="addons_screen"
+            android:summary="By Kajru Kashyap"
+            android:fragment="com.android.settings.system.addons.AddonsDashboardFragment"/>
+    </PreferenceCategory>
     <PreferenceCategory android:order="90"/>
     <Preference
         android:title="@string/power_menu_setting_name"
