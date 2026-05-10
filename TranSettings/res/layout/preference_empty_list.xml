@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="Transsion Addons"
+    android:key="addons_screen">
+
+    <PreferenceCategory android:key="addons_enabler">
+        <SwitchPreference
+            android:title="Enable Addons"
+            android:key="kajru_addons_enabled"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.system.addons.AddonsController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Kernel Manager"
+        android:key="addons_category_kernel"
+        android:dependency="kajru_addons_enabled">
+
+        <ListPreference
+            android:title="CPU Little Governor"
+            android:key="cpu_little_gov"
+            android:persistent="true"
+            settings:controller="com.android.settings.system.addons.CPULittleController"/>
+
+        <ListPreference
+            android:title="CPU Big Governor"
+            android:key="cpu_big_gov"
+            android:persistent="true"
+            settings:controller="com.android.settings.system.addons.CPUBigController"/>
+
+        <ListPreference
+            android:title="GPU Governor"
+            android:key="gpu_gov"
+            android:persistent="true"
+            settings:controller="com.android.settings.system.addons.GPUGovernorController"/>
+
+        <SwitchPreference
+            android:title="Bypass Charging"
+            android:key="bypass_charging"
+            android:summary="Disable charging while connected to charger."
+            settings:controller="com.android.settings.system.addons.BypassChargingController"/>
+
+        <SwitchPreference
+            android:title="Disable Thermal"
+            android:key="thermal_disable"
+            android:summary="Disable thermal throttling."
+            settings:controller="com.android.settings.system.addons.ThermalDisableController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Miscellaneous"
+        android:key="addons_category_misc"
+        android:dependency="kajru_addons_enabled">
+
+        <SwitchPreference
+            android:title="Disable Flag Secure"
+            android:key="satya_dfs_key"
+            android:summary="Allow screenshot and screen recordings in protected apps."
+            settings:controller="com.android.settings.system.addons.DisableFlagSecureControlller"/>
+
+        <SwitchPreference
+            android:title="Laya Battmon"
+            android:key="laya_addon_enabled"
+            settings:controller="com.android.settings.system.addons.LayaController"/>
+
+        <SwitchPreference
+            android:title="Disable Tap to Rotate"
+            android:key="disable_tap_rotate"
+            android:summary="Hide the manual rotation button on the navigation bar."
+            settings:controller="com.android.settings.system.addons.TapRotateListener"/>
+
+        <SwitchPreference
+            android:title="Use Custom OTA Banner"
+            android:key="os_satya_banner_enabler"
+            android:summary="Use your own image as the OTA banner card."
+            settings:controller="com.android.settings.system.addons.CustomBannerEnablerController"/>
+
+        <Preference
+            android:title="Select custom image now"
+            android:key="os_satya_banner_selector"
+            android:dependency="os_satya_banner_enabler"
+            settings:controller="com.android.settings.system.addons.TranCustomBannerOTA"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
